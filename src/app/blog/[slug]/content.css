@@ -30,3 +30,8 @@ li {
 a {
   @apply text-indigo-600;
 }
+
+p {
+  @layer break-word;
+  @apply whitespace-normal;
+}

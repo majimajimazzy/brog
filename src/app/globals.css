@@ -13,3 +13,7 @@
     --foreground: #ededed;
   }
 }
+
+p {
+  word-wrap: break-word;
+}
