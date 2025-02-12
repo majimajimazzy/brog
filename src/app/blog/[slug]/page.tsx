@@ -9,11 +9,16 @@ import Link from 'next/link';
 
 
 // ブログ記事ページ
-export default async function BlogPost({ params }: { params: { id: string } }) {
+export default async function BlogPost({ params } : {params:Promise<{slug : string}>}) {
   // URLのパラメータから該当するファイル名を取得 (今回は hello-world)
-  const { slug } = params;
+  //const { slug } = params;
+  const { slug } = await params.then((data: {slug: string})=>{
+    return data;
+  })
   const filePath = path.join(process.cwd(), 'content', `${slug}.md`);
-
+  console.log(typeof params);
+  console.log(slug);
+  
   // ファイルの中身を取得
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContents);
