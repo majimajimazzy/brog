@@ -71,6 +71,7 @@ return (
                       className="mt-3 text-lg font-semibold leading-6 text-blue-700 group-hover:text-blue-400"
                     >
                       {post.frontmatter.title}
+                      
                     </Link>
                   </h3>
                   {/* 記事説明文を表示 */}
