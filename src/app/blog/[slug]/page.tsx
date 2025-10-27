@@ -23,8 +23,10 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContents);
   const title = data.title; // 記事のタイトル
+  const date = data.date;
   const processedContent = await unified().use(remarkParse).use(remarkHtml).process(content);
   const contentHtml = processedContent.toString(); // 記事の本文をHTMLに変換
+  console.log(contentHtml);
   return (
     <div>
       <header className="sticky top-0 border-b z-10 bg-white">
@@ -39,10 +41,14 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {title}
           </h1>
+          <div>
+            {date}
+          </div>
           <div
             className="mt-6"
             dangerouslySetInnerHTML={{ __html: contentHtml }}
-          ></div>
+          >
+          </div>
         </div>
       </div>
       <footer className="bg-gray-100">

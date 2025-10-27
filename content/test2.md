@@ -6,4 +6,4 @@ description: "This is my first blog post!"
 
 ## 見出し
 
-This is my first blog post!
+Today is August 26!
