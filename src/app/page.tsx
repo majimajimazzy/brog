@@ -3,6 +3,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkHtml from 'remark-html';
 
 export default async function Blogs() {
   // contentディレクトリ内のマークダウンファイル一覧を取得
@@ -27,18 +30,7 @@ export default async function Blogs() {
     // 最新日付順に並び替え
     posts.sort((a, b) => Number(new Date(b.frontmatter.date)) - Number(new Date(a.frontmatter.date)))
   );
-  /*
-  ).then((posts) =>
-    // 最新日付順に並び替え
-    posts.sort((a, b) => {
-      const a_date = dayjs(b.frontmatter.date).format('yyyy-mm-dd');
-      const b_date = dayjs(a.frontmatter.date).format('yyyy-mm-dd');
-
-      const result = (a_date > b_date) ? -1 : 1;
-
-      return result;
-    })
-  );*/
+  console.log(posts);
 
 return (
   <div>

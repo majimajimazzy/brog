@@ -16,8 +16,8 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
     return data;
   })
   const filePath = path.join(process.cwd(), 'content', `${slug}.md`);
-  console.log(typeof params);
-  console.log(slug);
+  //console.log(typeof params);
+  //console.log(slug);
   
   // ファイルの中身を取得
   const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -26,7 +26,10 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
   const date = data.date;
   const processedContent = await unified().use(remarkParse).use(remarkHtml).process(content);
   const contentHtml = processedContent.toString(); // 記事の本文をHTMLに変換
-  console.log(contentHtml);
+  //console.log(content);
+  const string_box = content;
+  const strings = string_box.slice(0,100);
+  console.log(strings);
   return (
     <div>
       <header className="sticky top-0 border-b z-10 bg-white">
