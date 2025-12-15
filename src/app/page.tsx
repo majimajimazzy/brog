@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
-
+import append from '@/lib/append';
 
 export default async function Blogs() {
   // contentディレクトリ内のマークダウンファイル一覧を取得
@@ -15,12 +15,14 @@ export default async function Blogs() {
     fileNames.map(async (fileName) => {
       const filePath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContents);
+      const { data , content} = matter(fileContents);
+      const want_text = append(content);
 
       // slugとfrontmatter(title, date, description)を取得
       return {
         slug: fileName.replace('.md', ''),
         frontmatter: data,
+        excerpt: append(content),
       };
     })
   ).then((posts) =>
@@ -67,6 +69,9 @@ export default async function Blogs() {
                       className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"
                       dangerouslySetInnerHTML={{ __html: `${post.frontmatter.description}` }}
                     ></p>
+                    <p className="mt-5 text-sm leading-6 text-gray-600">
+                      {post.excerpt}
+                    </p>
                   </div>
                 </article>
               ))}

@@ -6,7 +6,7 @@ import remarkParse from 'remark-parse';
 import remarkHtml from 'remark-html';
 import './content.css';
 import Link from 'next/link';
-import append from './lib/append';
+import append from '@/lib/append';
 
 // ブログ記事ページ
 export default async function BlogPost({ params } : {params:Promise<{slug : string}>}) {
@@ -22,10 +22,9 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
   const date = data.date;
   const processedContent = await unified().use(remarkParse).use(remarkHtml).process(content);
   const contentHtml = processedContent.toString(); // 記事の本文をHTMLに変換
-  //console.log(content);
   const string_box = content;
-  const strings = string_box.slice(0,100);//本文の100文字を取得
-  console.log(strings);
+  const want = append(string_box);//本文の100文字を取得
+  console.log(want);
   return (
     <div>
       <header className="sticky top-0 border-b z-10 bg-white">
