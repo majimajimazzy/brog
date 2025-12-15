@@ -6,19 +6,15 @@ import remarkParse from 'remark-parse';
 import remarkHtml from 'remark-html';
 import './content.css';
 import Link from 'next/link';
-
+import append from './lib/append';
 
 // ブログ記事ページ
 export default async function BlogPost({ params } : {params:Promise<{slug : string}>}) {
   // URLのパラメータから該当するファイル名を取得 (今回は hello-world)
-  //const { slug } = params;
   const { slug } = await params.then((data: {slug: string})=>{
     return data;
   })
   const filePath = path.join(process.cwd(), 'content', `${slug}.md`);
-  //console.log(typeof params);
-  //console.log(slug);
-  
   // ファイルの中身を取得
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContents);
@@ -28,7 +24,7 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
   const contentHtml = processedContent.toString(); // 記事の本文をHTMLに変換
   //console.log(content);
   const string_box = content;
-  const strings = string_box.slice(0,100);
+  const strings = string_box.slice(0,100);//本文の100文字を取得
   console.log(strings);
   return (
     <div>
