@@ -4,6 +4,8 @@ import matter from 'gray-matter';
 import Link from 'next/link';
 import append from '@/lib/append';
 
+
+
 export default async function Blogs() {
   // contentディレクトリ内のマークダウンファイル一覧を取得
   const postsDirectory = path.join(process.cwd(), 'content');
@@ -16,7 +18,6 @@ export default async function Blogs() {
       const filePath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const { data , content} = matter(fileContents);
-      const want_text = append(content);
 
       // slugとfrontmatter(title, date, description)を取得
       return {
@@ -29,7 +30,6 @@ export default async function Blogs() {
     // 最新日付順に並び替え
     posts.sort((a, b) => Number(new Date(b.frontmatter.date)) - Number(new Date(a.frontmatter.date)))
   );
-  console.log(posts);
 
   return (
     <div>
@@ -63,13 +63,7 @@ export default async function Blogs() {
                       >
                         {post.frontmatter.title}
                       </Link>
-                    </h3>
-                    {/* 記事説明文を表示 */}
-                    <p
-                      className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600"
-                      dangerouslySetInnerHTML={{ __html: `${post.frontmatter.description}` }}
-                    ></p>
-                    <p className="mt-5 text-sm leading-6 text-gray-600">
+                    </h3>                    <p className="mt-5 text-sm leading-6 text-gray-600">
                       {post.excerpt}
                     </p>
                   </div>

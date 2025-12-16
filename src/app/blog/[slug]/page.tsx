@@ -30,7 +30,7 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
       <header className="sticky top-0 border-b z-10 bg-white">
         <div className="max-w-4xl mx-auto flex justify-between items-center h-12">
           <Link href="/">
-            <div>mazzy's brog</div>
+            <div>mazzy's blog</div>
           </Link>
         </div>
       </header>
