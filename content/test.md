@@ -2,8 +2,9 @@
 title: test!!
 date: "2025-01-22"
 description: "This is test!"
+thumbnail: "/images/Shibuya2.jpg"
 ---
 
-## What you see?
+## 4
 
-表示できてる？
+What you see?

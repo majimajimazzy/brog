@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
 import append from '@/lib/append';
+import Image from 'next/image';
 
 
 
@@ -24,6 +25,7 @@ export default async function Blogs() {
         slug: fileName.replace('.md', ''),
         frontmatter: data,
         excerpt: append(content),
+        //Image: data.thumbnail,
       };
     })
   ).then((posts) =>
@@ -50,6 +52,15 @@ export default async function Blogs() {
                   key={post.slug}
                   className="flex max-w-xl flex-col items-start justify-between"
                 >
+                  {post.frontmatter.thumbnail && (
+                    <Image
+                      src={post.frontmatter.thumbnail}
+                      alt={post.frontmatter.title}
+                      width={160}
+                      height={100}
+                      className="rounded-md object-cover"
+                    />
+                  )}
                   <div className="group relative">
                     {/* 日付を表示 */}
                     <div className="flex items-center gap-x-4 text-xs">
