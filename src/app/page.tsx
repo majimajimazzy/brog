@@ -25,7 +25,6 @@ export default async function Blogs() {
         slug: fileName.replace('.md', ''),
         frontmatter: data,
         excerpt: append(content),
-        //Image: data.thumbnail,
       };
     })
   ).then((posts) =>
@@ -58,7 +57,7 @@ export default async function Blogs() {
                       alt={post.frontmatter.title}
                       width={160}
                       height={100}
-                      className="rounded-md object-cover"
+                      className="rounded-md object-cover w-auto h-auto"
                     />
                   )}
                   <div className="group relative">

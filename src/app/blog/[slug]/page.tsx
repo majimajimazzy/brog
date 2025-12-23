@@ -7,6 +7,7 @@ import remarkHtml from 'remark-html';
 import './content.css';
 import Link from 'next/link';
 import append from '@/lib/append';
+import Image from 'next/image';
 
 // ブログ記事ページ
 export default async function BlogPost({ params } : {params:Promise<{slug : string}>}) {
@@ -25,6 +26,7 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
   const string_box = content;
   const want = append(string_box);//本文の100文字を取得
   console.log(want);
+  const pict = data.thumbnail;
   return (
     <div>
       <header className="sticky top-0 border-b z-10 bg-white">
@@ -36,6 +38,19 @@ export default async function BlogPost({ params } : {params:Promise<{slug : stri
       </header>
       <div className="bg-white px-6 py-32 lg:px-8">
         <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+          <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+            {pict && (
+              <div className="relative w-full h-64 mb-6">
+                <Image
+                  src={pict}
+                  alt={title}
+                  fill
+                  sizes='w-auto w-auto'
+                  className="object-cover rounded-lg w-auto h-auto"
+                />
+              </div>
+            )}
+          </div>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {title}
           </h1>
