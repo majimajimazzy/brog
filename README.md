@@ -1,6 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+これは[Next.js](https://nextjs.org)のプロジェクトで[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)を使って作成されています。
 
-## Getting Started 
+## Getting Started
 
 まず、開発サーバーを起動します：
 
